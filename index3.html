@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <tittle>registro de alumnos</tittle>
+    </head>
+    <body>
+        <h2>Datos personales</h2>
+        <style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+
+<h2></h2>
+
+<table style="width:100%">
+<tr>
+   <td>Nombre: <input type="nombre" id="daniela" name="fname" placeholder="daniela"></td>
+    <td>Apellido: <input type="text" id="muñoz" name="fname" placeholder="muñoz"> <br> 
+  </tr>
+  <tr>
+    <td>edad: <input type="edad" id="Hábito tabáquico" name="fname" placeholder="18"> </td>
+    <td>fecha de nacimiento: <input type="text" id="fecha" name="fname" placeholder="19/06/2008"></td>
+  </tr>
+  <tr>
+    <td>Matricula:  <input type="ingresar" id="789345" name="fname" placeholder="789345"> </td>  </td>
+   
+    
+</table>
+</style>
+<script>
+function enviar() {
+
+  // 1. Leer valores de los 10 primeros campos
+  const nombre = document.getElementById("nombre").value;
+  const apellido = document.getElementById("apellido").value;
+  const edad = document.getElementById("Edad ").value;
+  const fechadenacimiento = document.getElementById("fecha de nacimiento").value;
+  const matricula = document.getElementById("matricula").value;
+  
+  document.getElementById("mensaje").innerText = "Completa los campos";
+ fetch("https://script.google.com/macros/s/AKfycbwKe11pY3zER5OuasGHUfJC3Pw2bZo2gcrzpHSM2HHNAqrWxtF9oMu0PD_68KksrjkrqA/exec", {
+    method: "POST",
+    body: JSON.stringify(datos),
+    mode: "no-cors"
+  })
+    .then(() => {
+      document.getElementById("mensaje").innerText = "Datos enviados";
+      limpiarFormulario();
+    })
+    .catch(() => {
+      document.getElementById("mensaje").innerText = "Error al enviar";
+    });
+}
+
+// 5. Función para limpiar todos los campos
+function limpiarFormulario() {
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach(input => {
+    if (input.type === "text" || input.type === "date") {
+      input.value = "";
+    }
+  });
+}
+</script>
+</body>
+</html>
